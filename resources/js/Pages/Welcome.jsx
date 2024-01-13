@@ -66,14 +66,16 @@ export default function FormGroupExample() {
 
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupSelect2">
                         <Form.Label className="text-2xl">Város</Form.Label>
-                        <Form.Select aria-label="Default select example">
-                            <option>Open this select menu</option>
+                        <Form.Control
+                            list="cities"
+                            placeholder="Válaszd ki a várost"
+                            onChange={(e) => setSelectedCity(e.target.value)}
+                        />
+                        <datalist id="cities">
                             {cities.map(city => (
-                                <option key={city.id} value={city.id}>
-                                    {city.name}
-                                </option>
+                                <option key={city.id} value={city.name} />
                             ))}
-                        </Form.Select>
+                        </datalist>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
