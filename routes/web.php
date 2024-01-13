@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,12 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'countries' => app(CountriesController::class)->getCountries(),
     ]);
 });
+
+Route::get('/getCountries', [CountriesController::class, 'getCountries']);
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
