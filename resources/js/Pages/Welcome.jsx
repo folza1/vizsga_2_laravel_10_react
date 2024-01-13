@@ -10,6 +10,8 @@ export default function FormGroupExample() {
     const [countryOptions, setCountryOptions] = useState([]);
     const [cities, setCities] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
+
 
 
     useEffect(() => {
@@ -69,6 +71,7 @@ export default function FormGroupExample() {
                         <Form.Control
                             list="cities"
                             placeholder="Válaszd ki a várost"
+                            value={selectedCity}
                             onChange={(e) => setSelectedCity(e.target.value)}
                         />
                         <datalist id="cities">
