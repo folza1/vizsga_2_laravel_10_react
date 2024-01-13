@@ -39,14 +39,46 @@ export default function FormGroupExample() {
         }
     }, [selectedCountry]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        const formData = {
+            name: e.target.formGroupName.value,
+            email: e.target.formGroupEmail.value,
+            country: selectedCountry,
+            city: selectedCity,
+            // Add more fields as needed
+        };
+
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log('Registration successful:', responseData);
+                // Handle successful registration (e.g., redirect to login page)
+            } else {
+                console.error('Registration failed:', response.statusText);
+                // Handle registration failure (e.g., display an error message)
+            }
+        } catch (error) {
+            console.error('Error during registration:', error.message);
+            // Handle unexpected errors
+        }
+    };
 
 
 
     return (
         <>
-            <h1 className="text-center my-5">Regisztráció</h1>
-            <Form className="border p-4 w-1/2 mx-auto">
+            <h1 className="text-center my-3">Regisztráció</h1>
+            <Form onSubmit={handleSubmit} className="border p-4 w-1/2 mx-auto">
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupName">
                         <Form.Label className="text-2xl">Név</Form.Label>
@@ -60,7 +92,8 @@ export default function FormGroupExample() {
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupSelect1">
                         <Form.Label className="text-2xl">Ország</Form.Label>
-                        <Form.Select aria-label="Default select example" onChange={(e) => setSelectedCountry(e.target.value)}>
+                        <Form.Select aria-label="Default select example"
+                                     onChange={(e) => setSelectedCountry(e.target.value)}>
                             <option>Open this select menu</option>
                             {countryOptions}
                         </Form.Select>
@@ -76,7 +109,7 @@ export default function FormGroupExample() {
                         />
                         <datalist id="cities">
                             {cities.map(city => (
-                                <option key={city.id} value={city.name} />
+                                <option key={city.id} value={city.name}/>
                             ))}
                         </datalist>
                     </Form.Group>
@@ -111,12 +144,24 @@ export default function FormGroupExample() {
                         </div>
                     </Form.Group>
                 </div>
+
+                <div className="mb-6">
+                    <Form.Group className="mb-3 mx-3" controlId="formGroupAcceptTerms">
+                        <Form.Check
+                            type="checkbox"
+                            label="Elfogadom a felhasználási feltételeket"
+                            required
+                        />
+                    </Form.Group>
+                </div>
+
                 <div className="mx-3">
                     <PrimaryButton className="w-full">Regisztráció</PrimaryButton>
                 </div>
-                <div>
-                    <a className="block" href="/forgotten_pass">Elfelejtetted a jelszavad?</a>
-                    <a className="block" href="/login">Már regisztráltál?</a>
+
+                <div className="flex flex-col justify-center mt-6">
+                    <a className="block mx-2 mx-auto" href="/forgotten_pass">Elfelejtetted a jelszavad?</a>
+                    <a className="block mx-2 mx-auto" href="/login">Már regisztráltál?</a>
                 </div>
             </Form>
         </>
