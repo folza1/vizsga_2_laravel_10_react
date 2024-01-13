@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import { usePage } from '@inertiajs/react';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function FormGroupExample() {
 
@@ -43,34 +44,47 @@ export default function FormGroupExample() {
         e.preventDefault();
 
         const formData = {
-            name: e.target.formGroupName.value,
-            email: e.target.formGroupEmail.value,
-            country: selectedCountry,
-            city: selectedCity,
+            name: e.target.name.value,
+            email: e.target.email.value,
+            country: e.target.country.value,
+            city: e.target.city.value,
+            tel: e.target.tel.value,
+            birth: e.target.birth.value,
+            password: e.target.password.value,
+            password_confirmation: e.target.password_confirmation.value,
+            gender: e.target.gender.value,
+            acceptTerms: e.target.acceptTerms.checked,
             // Add more fields as needed
         };
 
         try {
-            const response = await fetch('/register', {
-                method: 'POST',
+            const response = await axios.post('/registermy', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
             });
 
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log('Registration successful:', responseData);
+            if (response.status === 200) {
+                console.log('Registration successful:', response.data);
                 // Handle successful registration (e.g., redirect to login page)
             } else {
                 console.error('Registration failed:', response.statusText);
                 // Handle registration failure (e.g., display an error message)
             }
         } catch (error) {
-            console.error('Error during registration:', error.message);
-            // Handle unexpected errors
+            if (error.response) {
+                // A kérés elküldése sikeres volt, de a válasz státuszkódja nem 2xx
+                console.error('Registration failed with status:', error.response.status);
+                console.error('Response data:', error.response.data);
+            } else if (error.request) {
+                // A kérés elküldése nem sikerült
+                console.error('Request failed:', error.request);
+            } else {
+                // Egyéb hiba történt
+                console.error('Error during registration:', error.message);
+            }
         }
+
     };
 
 
@@ -140,9 +154,9 @@ export default function FormGroupExample() {
                     <Form.Group className="mb-3 mx-3" controlId="formGroupRadioGroup">
                         <Form.Label className="text-2xl">Nemed:</Form.Label>
                         <div>
-                            <Form.Check type="radio" label="Férfi" id="male" name="gender"/>
-                            <Form.Check type="radio" label="Nő" id="female" name="gender"/>
-                            <Form.Check type="radio" label="Egyéb" id="other" name="gender"/>
+                            <Form.Check type="radio" label="Férfi" id="male" value="male" name="gender"/>
+                            <Form.Check type="radio" label="Nő" id="female" value="female" name="gender"/>
+                            <Form.Check type="radio" label="Egyéb" id="other" value="other" name="gender"/>
                         </div>
                     </Form.Group>
                 </div>

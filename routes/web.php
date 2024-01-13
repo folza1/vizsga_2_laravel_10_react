@@ -29,8 +29,8 @@ Route::get('/', function () {
 });
 
 Route::get('/getCountries', [CountriesController::class, 'getCountries']);
-
 Route::post('/registermy', [RegistrationController::class, 'register']);
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
