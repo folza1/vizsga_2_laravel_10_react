@@ -51,7 +51,7 @@ export default function FormGroupExample() {
         };
 
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,17 +82,18 @@ export default function FormGroupExample() {
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupName">
                         <Form.Label className="text-2xl">Név</Form.Label>
-                        <Form.Control type="text" placeholder="Hogy hívnak"/>
+                        <Form.Control type="text" name="name" placeholder="Hogy hívnak"/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupEmail">
                         <Form.Label className="text-2xl">Email</Form.Label>
-                        <Form.Control type="email" placeholder="Email címed"/>
+                        <Form.Control type="email" name="email" placeholder="Email címed"/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupSelect1">
                         <Form.Label className="text-2xl">Ország</Form.Label>
                         <Form.Select aria-label="Default select example"
+                                     name="country"
                                      onChange={(e) => setSelectedCountry(e.target.value)}>
                             <option>Open this select menu</option>
                             {countryOptions}
@@ -103,6 +104,7 @@ export default function FormGroupExample() {
                         <Form.Label className="text-2xl">Város</Form.Label>
                         <Form.Control
                             list="cities"
+                            name="city"
                             placeholder="Válaszd ki a várost"
                             value={selectedCity}
                             onChange={(e) => setSelectedCity(e.target.value)}
@@ -117,21 +119,21 @@ export default function FormGroupExample() {
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPhone">
                         <Form.Label className="text-2xl">Telefonszám</Form.Label>
-                        <Form.Control type="tel" placeholder="Telefonszám"/>
+                        <Form.Control type="tel" name="tel" placeholder="Telefonszám"/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupBirthdate">
                         <Form.Label className="text-2xl">Születési dátum:</Form.Label>
-                        <Form.Control type="date" placeholder="Születési idő"/>
+                        <Form.Control type="date" name="birth" placeholder="Születési idő"/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPassword">
                         <Form.Label className="text-2xl">Jelszó</Form.Label>
-                        <Form.Control type="password" placeholder="Jelszó"/>
+                        <Form.Control type="password" name="password" placeholder="Jelszó"/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPasswordConfirmation">
                         <Form.Label className="text-2xl">Jelszó megerősítése</Form.Label>
-                        <Form.Control type="password" placeholder="Jelszó megerősítése"/>
+                        <Form.Control type="password" name="password_confirmation" placeholder="Jelszó megerősítése"/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
@@ -151,6 +153,7 @@ export default function FormGroupExample() {
                             type="checkbox"
                             label="Elfogadom a felhasználási feltételeket"
                             required
+                            name="acceptTerms"
                         />
                     </Form.Group>
                 </div>
@@ -160,8 +163,8 @@ export default function FormGroupExample() {
                 </div>
 
                 <div className="flex flex-col justify-center mt-6">
-                    <a className="block mx-2 mx-auto" href="/forgotten_pass">Elfelejtetted a jelszavad?</a>
-                    <a className="block mx-2 mx-auto" href="/login">Már regisztráltál?</a>
+                    <a className="block  mx-auto" href="/forgotten_pass">Elfelejtetted a jelszavad?</a>
+                    <a className="block  mx-auto" href="/login">Már regisztráltál?</a>
                 </div>
             </Form>
         </>
