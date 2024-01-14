@@ -34,7 +34,7 @@ export default function Login({status, canResetPassword}) {
                 {status && <div className="mb-4 font-medium text-sm text-green-600 text-center">{status}</div>}
             </div>
             <Form onSubmit={submit} className="border p-4 w-1/3 mx-auto">
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                     <Form.Label>Email címed</Form.Label>
                     <Form.Control placeholder="név@példa.com"
                                   id="email"
@@ -43,12 +43,11 @@ export default function Login({status, canResetPassword}) {
                                   value={data.email}
                                   className="mt-1 block w-full"
                                   autoComplete="username"
-                                  isFocused={true}
                                   onChange={(e) => setData('email', e.target.value)}
                     />
                     <InputError message={errors.email} className="mt-2"/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                     <Form.Label>Jelszó</Form.Label>
                     <Form.Control placeholder="*********"
                                   id="password"
