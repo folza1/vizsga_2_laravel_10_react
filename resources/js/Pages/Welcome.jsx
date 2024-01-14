@@ -12,6 +12,8 @@ export default function FormGroupExample() {
     const [cities, setCities] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
+    const [registrationErrorMessages, setRegistrationErrorMessages] = useState([]);
+
 
 
 
@@ -74,6 +76,12 @@ export default function FormGroupExample() {
             if (error.response) {
                 console.error('Registration failed with status:', error.response.status);
                 console.error('Response data:', error.response.data);
+
+                // Kinyerjük a hibaüzeneteket az error.response.data-ból
+                const errorMessages = Object.values(error.response.data);
+
+                // Megjelenítjük az összes hibaüzenetet
+                setRegistrationErrorMessages(errorMessages);
             } else if (error.request) {
                 console.error('Request failed:', error.request);
             } else {
@@ -84,10 +92,14 @@ export default function FormGroupExample() {
 
 
 
-
     return (
         <>
             <h1 className="text-center my-3">Regisztráció</h1>
+            {registrationErrorMessages.map((message, index) => (
+                <div key={index} className="text-red-500 text-center">
+                    {message}
+                </div>
+            ))}
             <Form onSubmit={handleSubmit} className="border p-4 w-1/2 mx-auto">
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupName">
