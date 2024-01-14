@@ -96,11 +96,11 @@ export default function FormGroupExample() {
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupName">
                         <Form.Label className="text-2xl">Név</Form.Label>
-                        <Form.Control type="text" name="name" placeholder="Hogy hívnak"/>
+                        <Form.Control type="text" name="name" placeholder="Hogy hívnak" required/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupEmail">
                         <Form.Label className="text-2xl">Email</Form.Label>
-                        <Form.Control type="email" name="email" placeholder="Email címed"/>
+                        <Form.Control type="email" name="email" placeholder="Email címed" required/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
@@ -108,7 +108,9 @@ export default function FormGroupExample() {
                         <Form.Label className="text-2xl">Ország</Form.Label>
                         <Form.Select aria-label="Default select example"
                                      name="country"
-                                     onChange={(e) => setSelectedCountry(e.target.value)}>
+                                     onChange={(e) => setSelectedCountry(e.target.value)}
+                                     required
+                        >
                             <option>Open this select menu</option>
                             {countryOptions}
                         </Form.Select>
@@ -122,6 +124,7 @@ export default function FormGroupExample() {
                             placeholder="Válaszd ki a várost"
                             value={selectedCity}
                             onChange={(e) => setSelectedCity(e.target.value)}
+                            required
                         />
                         <datalist id="cities">
                             {cities.map(city => (
@@ -133,30 +136,30 @@ export default function FormGroupExample() {
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPhone">
                         <Form.Label className="text-2xl">Telefonszám</Form.Label>
-                        <Form.Control type="tel" name="tel" placeholder="Telefonszám"/>
+                        <Form.Control type="tel" name="tel" placeholder="Telefonszám" required/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupBirthdate">
                         <Form.Label className="text-2xl">Születési dátum:</Form.Label>
-                        <Form.Control type="date" name="birth" placeholder="Születési idő"/>
+                        <Form.Control type="date" name="birth" placeholder="Születési idő" required/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPassword">
                         <Form.Label className="text-2xl">Jelszó</Form.Label>
-                        <Form.Control type="password" name="password" placeholder="Jelszó"/>
+                        <Form.Control type="password" name="password" placeholder="Jelszó" required/>
                     </Form.Group>
                     <Form.Group className="mb-3 w-1/2 mx-3" controlId="formGroupPasswordConfirmation">
                         <Form.Label className="text-2xl">Jelszó megerősítése</Form.Label>
-                        <Form.Control type="password" name="password_confirmation" placeholder="Jelszó megerősítése"/>
+                        <Form.Control type="password" name="password_confirmation" placeholder="Jelszó megerősítése" required/>
                     </Form.Group>
                 </div>
                 <div className="flex mx-auto mb-6">
                     <Form.Group className="mb-3 mx-3" controlId="formGroupRadioGroup">
                         <Form.Label className="text-2xl">Nemed:</Form.Label>
                         <div>
-                            <Form.Check type="radio" label="Férfi" id="male" value="male" name="gender"/>
-                            <Form.Check type="radio" label="Nő" id="female" value="female" name="gender"/>
-                            <Form.Check type="radio" label="Egyéb" id="other" value="other" name="gender"/>
+                            <Form.Check type="radio" label="Férfi" id="male" value="male" name="gender" required/>
+                            <Form.Check type="radio" label="Nő" id="female" value="female" name="gender" required/>
+                            <Form.Check type="radio" label="Egyéb" id="other" value="other" name="gender" required/>
                         </div>
                     </Form.Group>
                 </div>
@@ -166,8 +169,8 @@ export default function FormGroupExample() {
                         <Form.Check
                             type="checkbox"
                             label="Elfogadom a felhasználási feltételeket"
-                            required
                             name="acceptTerms"
+                            required
                         />
                     </Form.Group>
                 </div>

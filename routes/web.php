@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CountriesController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Application;
@@ -28,7 +29,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/getCountries', [CountriesController::class, 'getCountries']);
 Route::post('/registermy', [RegistrationController::class, 'register']);
 
 
