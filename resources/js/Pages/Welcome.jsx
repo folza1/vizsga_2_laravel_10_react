@@ -188,7 +188,7 @@ export default function FormGroupExample() {
                 </div>
 
                 <div className="flex flex-col justify-center mt-6">
-                    <a className="block  mx-auto" href="/forgotten_pass">Elfelejtetted a jelszavad?</a>
+                    <a className="block  mx-auto" href={route('password.request')}>Elfelejtetted a jelszavad?</a>
                     <a className="block  mx-auto" href="/login">Már regisztráltál?</a>
                 </div>
             </Form>
