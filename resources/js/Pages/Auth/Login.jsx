@@ -29,8 +29,10 @@ export default function Login({status, canResetPassword}) {
 
     return (
         <>
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
             <h1 className="text-center my-3">Bejelentkezés</h1>
+            <div>
+                {status && <div className="mb-4 font-medium text-sm text-green-600 text-center">{status}</div>}
+            </div>
             <Form onSubmit={submit} className="border p-4 w-1/3 mx-auto">
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Email címed</Form.Label>
