@@ -54,7 +54,6 @@ export default function FormGroupExample() {
             password_confirmation: e.target.password_confirmation.value,
             gender: e.target.gender.value,
             acceptTerms: e.target.acceptTerms.checked,
-            // Add more fields as needed
         };
 
         try {
@@ -66,26 +65,23 @@ export default function FormGroupExample() {
 
             if (response.status === 200) {
                 console.log('Registration successful:', response.data);
-                // Handle successful registration (e.g., redirect to login page)
+                // Átirányítás a /login oldalra
+                window.location.href = '/login';
             } else {
                 console.error('Registration failed:', response.statusText);
-                // Handle registration failure (e.g., display an error message)
             }
         } catch (error) {
             if (error.response) {
-                // A kérés elküldése sikeres volt, de a válasz státuszkódja nem 2xx
                 console.error('Registration failed with status:', error.response.status);
                 console.error('Response data:', error.response.data);
             } else if (error.request) {
-                // A kérés elküldése nem sikerült
                 console.error('Request failed:', error.request);
             } else {
-                // Egyéb hiba történt
                 console.error('Error during registration:', error.message);
             }
         }
-
     };
+
 
 
 
